@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Socios</title>
+    <link rel="stylesheet" href="/static/estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Listado de Socios</h2>
+
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% if mensajes %}
+                <ul class="flash-list">
+                {% for categoria, mensaje in mensajes %}
+                    <li class="alerta {{ categoria }}">{{ mensaje }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="card">
+            <form method="get" action="/ver" class="form-inline">
+                <input type="text" name="nombre" placeholder="Nombre" value="{{ filtros.nombre }}">
+                <input type="text" name="apellido" placeholder="Apellido" value="{{ filtros.apellido }}">
+                <select name="actividad">
+                    <option value="">Todas las actividades</option>
+                    <option value="Crossfit" {% if filtros.actividad == 'Crossfit' %}selected{% endif %}>Crossfit</option>
+                    <option value="Yoga" {% if filtros.actividad == 'Yoga' %}selected{% endif %}>Yoga</option>
+                    <option value="Pilates" {% if filtros.actividad == 'Pilates' %}selected{% endif %}>Pilates</option>
+                    <option value="Spinning" {% if filtros.actividad == 'Spinning' %}selected{% endif %}>Spinning</option>
+                    <option value="Natación" {% if filtros.actividad == 'Natación' %}selected{% endif %}>Natación</option>
+                    <option value="Gimnasio" {% if filtros.actividad == 'Gimnasio' %}selected{% endif %}>Gimnasio</option>
+                </select>
+                <button class="btn-small" type="submit">Buscar</button>
+                <a class="btn-small" href="/ver">Limpiar</a>
+            </form>
+        </div>
+
+        <p>Total de socios: <strong>{{ total }}</strong></p>
+        {% if total > 20 %}
+            <p class="nota">¡Hay más de 20 socios! 🥳</p>
+        {% elif total > 10 %}
+            <p class="nota">Hay más de 10 socios. 👋</p>
+        {% endif %}
+
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Email</th>
+                    <th>Actividad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in socios %}
+                <tr>
+                    <td>{{ s.nombre }}</td>
+                    <td>{{ s.apellido }}</td>
+
+                    <td>
+                        {{ s.edad }}
+                        {% if s.edad > 40 %}
+                            - <span class="badge">Adulto</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ s.email }}</td>
+                    <td>
+                        {{ s.actividad }}
+                        {% if s.actividad == "Crossfit" %}
+                            <span title="Crossfit">🏋️‍♂️</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/editar/{{ s.id }}">Editar</a> |
+                        <a href="/eliminar/{{ s.id }}">Eliminar</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">No se encontraron socios.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Ejemplo de agrupado por actividad usando for each -->
+        <h3>Socios por actividad</h3>
+        {% set actividades = {} %}
+        {% for s in socios %}
+            {% set actividades = actividades.update({}) %} {# esta línea no altera, sólo para claridad en el código #}
+        {% endfor %}
+        <!-- Para un estudiante de bajo nivel, mostramos una lista simple por actividad usando for/if -->
+        <ul>
+        {% for act in ["Crossfit","Yoga","Pilates","Spinning","Natación","Gimnasio"] %}
+            <li><strong>{{ act }}:</strong>
+                <ul>
+                {% for s in socios %}
+                    {% if s.actividad == act %}
+                        <li>{{ s.nombre }} {{ s.apellido }} ({{ s.edad }} años){% if s.edad > 40 %} - Adulto{% endif %}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <br>
+        <a class="btn" href="/agregar">Agregar nuevo socio</a>
+        <a class="btn" href="/">Inicio</a>
+    </div>
+</body>
+</html>

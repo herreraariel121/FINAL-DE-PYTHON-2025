@@ -1,0 +1,127 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #f0f4f8, #ffffff);
+    margin: 0;
+    padding: 20px;
+    color: #222;
+}
+
+/* Contenedor centrado */
+.container {
+    max-width: 900px;
+    margin: 20px auto; /* centra la caja en la pantalla */
+    padding: 10px;
+}
+
+/* Tarjeta */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+/* Formularios */
+.form-card label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-card input[type="text"],
+.form-card input[type="email"],
+.form-card input[type="number"],
+.form-card select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 12px; /* espacio entre inputs */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Botones */
+.btn, .btn-small, .btn-submit {
+    display: inline-block;
+    background: #2b7cff;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-right: 8px;
+}
+
+.btn:hover, .btn-small:hover, .btn-submit:hover {
+    background: #155fc4;
+}
+
+.btn-small {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+}
+
+.btn-danger {
+    background: #d9534f;
+}
+.btn-danger:hover {
+    background: #b9302a;
+}
+
+/* Tabla */
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.tabla th, .tabla td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+/* Flash messages */
+.alerta {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+/* error / exito */
+.alerta.error {
+    background-color: #ffe6e6;
+    color: #900;
+    border: 1px solid #ffb3b3;
+}
+.alerta.exito {
+    background-color: #e6ffea;
+    color: #064;
+    border: 1px solid #b3ffcc;
+}
+
+/* Badge */
+.badge {
+    background: #ffd966;
+    color: #333;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    margin-left: 6px;
+}
+
+/* Notas */
+.nota {
+    font-style: italic;
+    color: #555;
+}
+
+/* Espaciado para lista flash */
+.flash-list {
+    list-style: none;
+    padding: 0;
+}

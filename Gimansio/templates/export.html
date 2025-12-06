@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exportación</title>
+    <link rel="stylesheet" href="/static/estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Archivo generado</h2>
+        <p>Se generó el archivo: <strong>{{ filepath }}</strong></p>
+        <p>Puedes descargarlo desde aquí:</p>
+        <a class="btn" href="/static/{{ filepath }}" download>Descargar {{ filepath }}</a>
+        <br><br>
+        <a class="btn" href="/ver">Volver al listado</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Socio</title>
+    <link rel="stylesheet" href="/static/estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Eliminar Socio</h2>
+
+        <div class="card">
+            <p>¿Está seguro que desea eliminar este socio?</p>
+            <ul>
+                <li>Nombre: {{ s.nombre }}</li>
+                <li>Apellido: {{ s.apellido }}</li>
+                <li>Edad: {{ s.edad }}</li>
+                <li>Email: {{ s.email }}</li>
+                <li>Actividad: {{ s.actividad }}</li>
+            </ul>
+
+            <form action="" method="post">
+                <button class="btn-submit btn-danger" type="submit">Sí, eliminar</button>
+                <a class="btn" href="/ver">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
